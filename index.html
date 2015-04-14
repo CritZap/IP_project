@@ -1,20 +1,43 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Twttr</title>
         <script type="text/javascript" src="jquery-1.11.2.js"></script>
         <script type="text/javascript" src="script.js"></script>
     </head>
 
     <body>
-        <div>
-        Tweet:<br>
-        <input type="text" id="text"></input>
-        <button id="post">Post</button>
+        <div style="width:20%; text-align:left">
+        <div id="signIn">
+            Login:<br>
+            <input type="text" id="name"></input><br>
+            <input type="password" id="password"></input><br>
+            <button id="login">Login</button>
+        </div><br>
+
+        <div id="registration">
+            Register:<br>
+            <input type="text" id="regName"></input><br>
+            <input type="password" id="regPass"></input><br>
+            <button id="register">Register</button>
+        </div>
+        </div>
+
+        <button id="logout">Logout</button>
+        <div id="profile" style="width:35%; text-align:center">
+        </div>
+
+        <center>
+        <div id="textbox">
+            Tweet:<br>
+            <input type="text" id="text"></input>
+            <button id="post">Post</button>
         </div>
         </br>
         <div id="tweet"></div>
         </br>
+        </center>
     </body>
 
 </html>
