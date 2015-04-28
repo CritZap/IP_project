@@ -6,6 +6,13 @@ $(document).ready(function() {
     $('#profile').hide();
     $('#logout').hide();
 
+    $.ajax({
+        type: "GET",    
+        url: "http://private-7906c-ipproject2.apiary-mock.com/posts/1", 
+        success: function(msg){
+        }
+    });
+
 
     $("#register").click(function(){
     	var name = $("#regName").val();
@@ -41,13 +48,26 @@ $(document).ready(function() {
 
 
     $("#post").click(function(){
+
+
+    	$.ajax({
+        	type: "POST",
+        	url: "http://private-7906c-ipproject2.apiary-mock.com/posts",  
+        	title: "Post3", 
+        	text: "Excuse Me",    
+        	success: function(msg){ 
+        	}
+    	});
+
         var text = $("#text").val();
         var name = $("#name").val();
         if (text.length<=0) {
             alert("Write something !");
             return false;
         }
+
         $("#tweet").html(name.replace(' ', '') + "<br>" + text);
+
     });
 
 
