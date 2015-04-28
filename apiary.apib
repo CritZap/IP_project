@@ -4,25 +4,77 @@ FORMAT: 1A
 An API for https://github.com/CritZap/IP_project
 
 
-
+## Tweet Collection [/posts]
 
 ### List all tweets [GET]
 + Response 200 (application/json)
 
+        [
+            { 
+                "id": 1, 
+                "title": "Post1",
+                "url": "/posts/1",
+                "text": "Burp"
+
+            },
+            
+            {
+                "id": 2, 
+                "title": "Post2",
+                "url": "/posts/2",
+                "text": "Deburp"
+
+            }
+        ]
         
 
 ### Create a tweet [POST]
+
++ title (string) - The name of the Post
++ text (string) - Name of the picked hero.
+
 + Request (application/json)
 
+        { 
+            "title": "Post1", 
+            "text": "Burp"
+        }
 
 + Response 201 (application/json)
 
+    + Headers
+
+            Location: /posts/1
+
+    + Body
+    
+            { 
+                "id": 1, 
+                "title": "Post1",
+                "url": "/posts/1",
+                "text": "Burp" 
+            }
+
+## Builds [/posts/{id}]
+
+
++ Parameters
+    + id (required, number, `1`) ... id of a post in form of an integer
         
 
 ### Retrieve a tweet [GET]
 + Response 200 (application/json)
 
+    + Body
+
+            { 
+                "id": 1, 
+                "title": "Post1",
+                "url": "/posts/1",
+                "text": "Burp"
+            }
     
 
 ### Delete a tweet [DELETE]
+
 + Response 204
