@@ -71,4 +71,16 @@ $(document).ready(function() {
     });
 
 
+    $("#del").click(function(){
+    	$.ajax({
+        	type: "DELETE",
+        	url: "http://private-7906c-ipproject2.apiary-mock.com/posts/1",      
+        	success: function(msg){ 
+        	}
+    	});
+
+    	$("#tweet").remove();
+    });
+
+
 });
