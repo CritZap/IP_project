@@ -6,7 +6,7 @@ An API for https://github.com/CritZap/IP_project
 
 ## Tweet Collection [/posts]
 
-### List all tweets [GET]
+### Get all tweets [GET]
 + Response 200 (application/json)
 
         [
@@ -20,34 +20,34 @@ An API for https://github.com/CritZap/IP_project
             { 
                 "id": 2,
                 "user": "Random Guy",
-                "text": "LeBurp"
+                "text": "jumping jacks"
 
             },
             
             { 
                 "id": 3,
                 "user": "Dev",
-                "text": "BeBurp"
+                "text": "Code code code code code"
 
             },
             
             {
                 "id": 4,
                 "user": "BigBen",
-                "text": "Deburp"
+                "text": "Chaps"
 
             }
         ]
         
 
-### Create a tweet [POST]
+### Post a tweet [POST]
 
 + text (string) - Text.
 
 + Request (application/json)
 
         { 
-            "text": "Burp"
+            "text": ""
         }
 
 + Response 201 (application/json)
