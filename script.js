@@ -6,8 +6,23 @@ $(document).ready(function() {
         url: "http://private-7906c-ipproject2.apiary-mock.com/posts",
         success: function(response){
             $.each(response, function() {
-                $("#tweet").append("<div class='msg'>" + response[this.id - 1].user.replace(' ', '') + "<br>" + 
-                    response[this.id - 1].text + "<br>" + "<button class='del'>Delete</button>" + "<br><br></div>");
+                $("#tweet").append("<div id='"+response[this.id - 1].id+"' class='msg'>" + response[this.id - 1].user.replace(' ', '') + "<br>" + 
+                    response[this.id - 1].text + "<br>" + "<button id='btn-"+response[this.id - 1].id+"' class='del'>Delete</button>" + "<br><br></div>");
+                
+                var data_id = response[this.id - 1].id;
+
+                $("#btn-"+data_id).click(function(){
+                $.ajax({
+                    type: "DELETE",
+                    url: "http://private-7906c-ipproject2.apiary-mock.com/posts/" + data_id,  
+                    success: function(response){
+                        $("#"+data_id).remove();
+                    }
+                });
+
+                });
+
+                $('.del').hide();
             })
          }
     });
@@ -16,7 +31,6 @@ $(document).ready(function() {
     $('#textbox').hide();
     $('#profile').hide();
     $('#logout').hide();
-    $('.del').hide();
 
 
 
@@ -56,17 +70,6 @@ $(document).ready(function() {
 
 
     $("#post").click(function(){
-        var Obj = { "text": $("#text").val() }
-        $.ajax({
-            type: "POST",
-            contentType: 'application/json',
-            url: "http://private-7906c-ipproject2.apiary-mock.com/posts",  
-            data: JSON.stringify(Obj),
-            success: function(response){
-            }
-        });
-  
-
         var text = $("#text").val();
         var name = $("#name").val();
         if (text.length<=0) {
@@ -74,21 +77,35 @@ $(document).ready(function() {
             return false;
         }
 
-        $("#tweet").append("<div class='msg'>" + name.replace(' ', '') + "<br>" + text + "<br>" + 
-            "<button class='del'>Delete</button>" + "<br><br></div>");
-
-
-
-        $(".del").click(function(){
+        var Obj = { "text": $("#text").val() }
         $.ajax({
-            type: "DELETE",
-            url: "http://private-7906c-ipproject2.apiary-mock.com/posts/1",      
+            type: "POST",
+            contentType: 'application/json',
+            url: "http://private-7906c-ipproject2.apiary-mock.com/posts",  
+            data: JSON.stringify(Obj),
             success: function(response){
-                    $(".msg").remove();
+                $("#tweet").append("<div id='"+response.id+"' class='msg'>" + response.user.replace(' ', '') + "<br>" + 
+                    response.text + "<br>" + "<button id='btn-"+response.id+"' class='del'>Delete</button>" + "<br><br></div>");
+
+                // Post without the use of json what you have written in the textbox:
+                // $("#tweet").append("<div id='"+response.id+"' class='msg'>" + name.replace(' ', '') + "<br>" + text + "<br>" + 
+                //     "<button id='btn-"+response.id+"' class='del'>Delete</button>" + "<br><br></div>");
+
+                var data_id = response.id;
+
+                $("#btn-"+data_id).click(function(){
+                $.ajax({
+                    type: "DELETE",
+                    url: "http://private-7906c-ipproject2.apiary-mock.com/posts/" + data_id,
+                    success: function(response){
+                        $("#"+data_id).remove();
+                    }
+                });
+
+            });
+
             }
         });
-
-    });
 
     });
 
